@@ -1,0 +1,8 @@
+.products-content {
+  padding: 14rem 0;
+  grid-column: center-start / col-end 7;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  /* align-items: start; */
+  gap: 4rem;
+}
