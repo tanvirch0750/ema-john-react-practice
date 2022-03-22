@@ -5,7 +5,8 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between;
+  align-items: start; */
 }
 
 .product-card__img {
@@ -19,7 +20,7 @@
 
 .product-info h2 {
   color: #0e161a;
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   font-weight: 400;
 }
 
@@ -29,6 +30,7 @@
   font-weight: 400;
 
   margin: 1.4rem;
+  /* margin-top: auto; */
 }
 
 .product-info small {
@@ -45,12 +47,15 @@
 .add-to-cart {
   border: none;
   width: 100%;
+
   font-size: 1.5rem;
   border-top: 1px solid #95a0a7;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background-color: #ffe0b3;
   cursor: pointer;
+
+  margin-top: auto;
 
   display: flex;
   gap: 5px;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
+import OrderSummary from './components/Order-Summary/OrderSummary';
 import Products from './components/Products/Products';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <div className="container">
       <Header />
       <Products products={products}/>
+      <OrderSummary />
     </div>
   );
 }

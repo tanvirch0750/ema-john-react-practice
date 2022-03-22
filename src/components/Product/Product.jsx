@@ -2,8 +2,9 @@ import React from 'react';
 import './Product.css';
 
 const Product = ({product}) => {
-   console.log(product);
+   
    const {id, img, name, price, seller, ratings} = product;
+   console.log(name);
    return (
       <div className="product-card">
          <div className="product-card__img">
@@ -11,7 +12,7 @@ const Product = ({product}) => {
          </div>
          <div className="product-info">
             <div className="product-info__main">
-               <h2>{name}</h2>
+               <h2>{name.length > 20 ? name.slice(0, 20) : name}</h2>
                <p>Price: ${price}</p>
             </div>
             <div className="product-info__secondary">

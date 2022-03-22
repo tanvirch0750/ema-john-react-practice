@@ -1,0 +1,64 @@
+/* product summary component */
+.product-summary {
+  background-color: rgba(255, 153, 0, 0.3);
+  grid-column: col-start 9 / full-end;
+  padding: 30px;
+}
+
+.product-summary h2 {
+  font-size: 2.5rem;
+  color: #1c2b35;
+  font-weight: 400;
+  text-align: center;
+}
+
+.summary-details {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.summary-details p {
+  font-size: 17px;
+  color: #2a414f;
+  font-weight: 400;
+}
+
+.summary-details h3 {
+  font-size: 21px;
+  color: #0e161a;
+  font-weight: 400;
+}
+
+/* Summary buttons component */
+.order-summary__buttons {
+  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.btn {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  border: none;
+  padding: 1.8rem 0;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+}
+.btn svg {
+  width: 2rem;
+}
+
+.btn.clear-cart-btn {
+  background-color: #ff3030;
+}
+.btn.review-btn {
+  background-color: #ff9900;
+}
