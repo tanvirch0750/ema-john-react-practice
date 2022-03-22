@@ -1,8 +1,14 @@
 .products-content {
-  padding: 14rem 0;
+  padding: 9rem 0;
   grid-column: center-start / col-end 7;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-  /* align-items: start; */
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   gap: 3rem;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.products-content::-webkit-scrollbar {
+  display: none;
 }

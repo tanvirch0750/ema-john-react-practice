@@ -7,8 +7,6 @@ import Products from './components/Products/Products';
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-
-  console.log(cart)
   
   useEffect(()=> {
     fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
