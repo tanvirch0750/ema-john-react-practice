@@ -1,0 +1,24 @@
+/* header comonent */
+.header {
+  grid-column: full-start / full-end;
+  background-color: #1c2b35;
+  padding: 0 14.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation ul {
+  display: flex;
+  gap: 3.6rem;
+}
+
+.navigation ul li a {
+  font-size: 1.7rem;
+  color: #fff;
+  transition: 300ms;
+}
+
+.navigation ul li:hover a {
+  color: #ff9900;
+}
