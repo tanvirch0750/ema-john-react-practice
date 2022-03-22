@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import OrderSummary from './components/Order-Summary/OrderSummary';
 import Products from './components/Products/Products';
+import { addToDb, getStoredCart } from './utilities/fakedb';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -12,10 +13,15 @@ function App() {
     fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
      .then(products => products.json())
      .then(data => setProducts(data))
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    getStoredCart()
+  },[])
 
   const handleAddToCart = (product) => {
-    setCart([...cart, product])
+    setCart([...cart, product]);
+    addToDb(product.id)
   }
 
   return (
