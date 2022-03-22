@@ -6,6 +6,9 @@ import Products from './components/Products/Products';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  console.log(cart)
   
   useEffect(()=> {
     fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
@@ -13,11 +16,15 @@ function App() {
      .then(data => setProducts(data))
   }, [])
 
+  const handleAddToCart = (product) => {
+    setCart([...cart, product])
+  }
+
   return (
     <div className="container">
       <Header />
-      <Products products={products}/>
-      <OrderSummary />
+      <Products products={products} handleAddToCart={handleAddToCart}/>
+      <OrderSummary cart={cart}/>
     </div>
   );
 }
