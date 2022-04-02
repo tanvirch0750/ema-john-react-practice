@@ -1,9 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import NotFound from './components/Not-Found/NotFound';
+import OrderReviewContainer from './components/Order-Review-Container/OrderReviewContainer';
 import ShopContainer from './components/Shop-Container/ShopContainer';
 import useCart from './Hooks/useCart';
 import useProducts from './Hooks/useProducts';
-import { addToDb } from './utilities/fakedb';
+import { addToDb, deleteShoppingCart } from './utilities/fakedb';
 
 function App() {
   const [products] = useProducts();
@@ -25,10 +29,20 @@ function App() {
     addToDb(selectedProduct.id)
   }
 
+  const handleClearCart = () => {
+    deleteShoppingCart();
+    setCart([])
+  }
+
   return (
     <div className="container">
       <Header />
-      <ShopContainer products={products} handleAddToCart={handleAddToCart} cart={cart}/>
+      <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='shop' element={<ShopContainer products={products} handleAddToCart={handleAddToCart} cart={cart} handleClearCart={handleClearCart}/>}/>
+          <Route path='orders-review' element={<OrderReviewContainer cart={cart}/>}/>
+          <Route path='*' element={<NotFound />}/>
+      </Routes>
     </div>
   );
 }

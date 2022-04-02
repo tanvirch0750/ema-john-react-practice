@@ -2,7 +2,7 @@ import React from 'react';
 import { FaArrowRight, FaTrashAlt } from "react-icons/fa";
 import './OrderSummary.css';
 
-const OrderSummary = ({cart}) => {
+const OrderSummary = ({cart, handleClearCart}) => {
    const totalPrice = cart.reduce((acc, currentValue) => acc + currentValue.price * currentValue.quantity, 0);
    const shippingPrice = cart.reduce((acc, currentValue) => acc + currentValue.shipping, 0);
    const quantity = cart.reduce((acc, currentValue) => acc + currentValue.quantity , 0);
@@ -20,7 +20,7 @@ const OrderSummary = ({cart}) => {
           <h3>Grand Total: ${grandTotal.toFixed(2)}</h3>
         </div>
         <div className="order-summary__buttons">
-          <button className="btn clear-cart-btn">
+          <button className="btn clear-cart-btn" onClick={handleClearCart}>
             <p>Clear Cart</p>
             <FaTrashAlt />
           </button>
