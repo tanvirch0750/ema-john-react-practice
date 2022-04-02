@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './components/Header/Header';
-import OrderSummary from './components/Order-Summary/OrderSummary';
-import Products from './components/Products/Products';
+import ShopContainer from './components/Shop-Container/ShopContainer';
 import useCart from './Hooks/useCart';
 import useProducts from './Hooks/useProducts';
 import { addToDb } from './utilities/fakedb';
@@ -29,8 +28,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <Products products={products} handleAddToCart={handleAddToCart}/>
-      <OrderSummary cart={cart}/>
+      <ShopContainer products={products} handleAddToCart={handleAddToCart} cart={cart}/>
     </div>
   );
 }
