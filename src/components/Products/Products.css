@@ -4,11 +4,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
   gap: 3rem;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.products-content::-webkit-scrollbar {
-  display: none;
 }

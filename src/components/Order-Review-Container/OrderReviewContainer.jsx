@@ -6,7 +6,7 @@ const OrderReviewContainer = ({cart}) => {
    return (
       <>
          <OrderReview />
-         <OrderSummary cart={cart}/>
+         <OrderSummary cart={cart} customClass="true"/>
       </>
    );
 };

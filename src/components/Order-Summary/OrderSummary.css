@@ -1,11 +1,18 @@
 /* product summary component */
 .product-summary {
+  height: 100vh;
   background-color: rgba(255, 153, 0, 0.3);
   grid-column: col-start 9 / full-end;
   padding: 30px;
+  position: -webkit-sticky;
+  position: sticky !important;
+  top: 0;
 }
 
 .order-review-container.product-summary {
+  grid-column: col-start 8 / center-end;
+  margin: 3rem 0;
+  height: auto;
 }
 
 .product-summary h2 {
