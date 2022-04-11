@@ -8,9 +8,52 @@ export const FormContext = React.createContext({
   handleFormChange: () => {},
 });
 
+const validateEmail = (email) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
 const Form = ({ children, initialValues, heading, formType, errors }) => {
   const [form, setForm] = useState(initialValues);
   const [error, setError] = useState(errors);
+
+  const emailChecking = (updatedForm) => {
+    if (form.email === "" || validateEmail(updatedForm.email) !== true) {
+      setError({ ...error, email: "Please provide a valid email" });
+    } else {
+      setError({ ...error, email: "" });
+      return setForm(updatedForm);
+    }
+  };
+
+  const passwordChecking = (updatedForm) => {
+    if (form.password === "" || updatedForm.password.length < 6) {
+      setError({
+        ...error,
+        password:
+          "Please provede a strong password and should be minimum of six characters",
+      });
+    } else {
+      setError({
+        ...error,
+        password: "",
+      });
+    }
+  };
+
+  const confirmPasswordChecking = (updatedForm) => {
+    if (updatedForm.password !== updatedForm.confirmPassword) {
+      setError({
+        ...error,
+        confirmPassword: "Password does not match",
+      });
+    } else {
+      setError({
+        ...error,
+        confirmPassword: "",
+      });
+    }
+  };
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -20,29 +63,47 @@ const Form = ({ children, initialValues, heading, formType, errors }) => {
       [name]: value,
     };
 
+    if (updatedForm.email) {
+      emailChecking(updatedForm);
+    }
+
+    if (updatedForm.password) {
+      passwordChecking(updatedForm);
+    }
+
+    if (updatedForm.confirmPassword) {
+      confirmPasswordChecking(updatedForm);
+    }
+
     setForm(updatedForm);
   };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (form.email === "") {
-      return setError({ ...error, email: "Please provede a valid email" });
-    }
 
-    if (form.password === "") {
-      return setError({
-        ...error,
-        password: "Please provede a strong password",
-      });
+    if (form.email === "" || validateEmail(form.email) !== true) {
+      emailChecking(form);
+    } else if (form.password === "" || form.password.length < 6) {
+      passwordChecking(form);
+    } else {
+      setError({});
+      console.log("login submit");
     }
-
-    setError({});
-    console.log("login submit");
   };
 
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
-    console.log("signup submit");
+
+    if (form.email === "" || validateEmail(form.email) !== true) {
+      emailChecking(form);
+    } else if (form.password === "" || form.password.length < 6) {
+      passwordChecking(form);
+    } else if (form.password !== form.confirmPassword) {
+      confirmPasswordChecking(form);
+    } else {
+      setError({});
+      console.log("sign submit");
+    }
   };
 
   return (

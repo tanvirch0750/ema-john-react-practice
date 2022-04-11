@@ -10,10 +10,17 @@ const Signup = () => {
     confirmPassword: "",
   };
 
+  const errors = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
   return (
     <div className="signup">
       <Form
         initialValues={signUpInitialValues}
+        errors={errors}
         heading="Signup"
         formType="signup"
       >

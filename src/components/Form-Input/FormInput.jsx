@@ -17,12 +17,16 @@ function FormInput(props) {
         value={form[name]}
         onChange={handleFormChange}
         className="box-input"
+        autoComplete="off"
       />
       {error.email && name === "email" && (
         <p className="error">{error.email}</p>
       )}
       {error.password && name === "password" && (
         <p className="error">{error.password}</p>
+      )}
+      {error.confirmPassword && name === "confirmPassword" && (
+        <p className="error">{error.confirmPassword}</p>
       )}
     </div>
   );
