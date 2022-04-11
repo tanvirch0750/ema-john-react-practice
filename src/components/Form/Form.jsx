@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../Firebase/Firebase.init";
 import "./Form.css";
 
 export const FormContext = React.createContext({
@@ -16,7 +18,11 @@ const validateEmail = (email) => {
 const Form = ({ children, initialValues, heading, formType, errors }) => {
   const [form, setForm] = useState(initialValues);
   const [error, setError] = useState(errors);
+  const [createUserWithEmailAndPassword, user, loading, fireBaseError] =
+    useCreateUserWithEmailAndPassword(auth);
+  const navigate = useNavigate();
 
+  // Email Checking
   const emailChecking = (updatedForm) => {
     if (form.email === "" || validateEmail(updatedForm.email) !== true) {
       setError({ ...error, email: "Please provide a valid email" });
@@ -26,6 +32,7 @@ const Form = ({ children, initialValues, heading, formType, errors }) => {
     }
   };
 
+  // Password Checking
   const passwordChecking = (updatedForm) => {
     if (form.password === "" || updatedForm.password.length < 6) {
       setError({
@@ -41,6 +48,7 @@ const Form = ({ children, initialValues, heading, formType, errors }) => {
     }
   };
 
+  // Confirm Password Checking
   const confirmPasswordChecking = (updatedForm) => {
     if (updatedForm.password !== updatedForm.confirmPassword) {
       setError({
@@ -102,9 +110,13 @@ const Form = ({ children, initialValues, heading, formType, errors }) => {
       confirmPasswordChecking(form);
     } else {
       setError({});
-      console.log("sign submit");
+      createUserWithEmailAndPassword(form.email, form.confirmPassword);
     }
   };
+
+  if (user) {
+    navigate("/shop");
+  }
 
   return (
     <div className="form-container">
