@@ -1,33 +1,13 @@
 {
-  // Theme
-  // "workbench.colorTheme": "Dracula",
-
-  // config related to code formatting
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[javascriptreact]": {
-    "editor.formatOnSave": false
-  },
-  "javascript.validate.enable": false, //disable all built-in syntax checking
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.tslint": true,
     "source.organizeImports": true
   },
-  "eslint.alwaysShowStatus": true,
-  // "prettier.disableLanguages": [
-  //   "javascript",
-  //   "javascriptreact",
-  //   "typescriptreact"
-  // ],
-  // emmet
-  "emmet.triggerExpansionOnTab": true,
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  },
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+
   "editor.tokenColorCustomizations": {
     "[Default Dark+]": {
       "functions": "#1ED760",
@@ -37,7 +17,7 @@
       "numbers": "#c74ded",
       //"variables": "#0af7d3",
       //"variables": "#ff79cd",
-      //"variables": "#00e8c6",
+      "variables": "#93E6FC",
 
       "textMateRules": [
         {
@@ -60,7 +40,8 @@
         {
           "scope": "entity.name.tag",
           "settings": {
-            "foreground": "#1c99e6"
+            //"foreground": "#1c99e6"
+            "foreground": "#096bff"
             //"foreground": "#1c99e6b4"
           }
         },
@@ -81,9 +62,7 @@
           }
         }
       ]
-    },
-    "files.associations": {
-      "*.js": "typescriptreact"
     }
   }
+  // "peacock.color": "#61dafb"
 }
