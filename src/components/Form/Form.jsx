@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import "./Form.css";
 
 export const FormContext = React.createContext({
+  error: {},
   form: {},
   handleFormChange: () => {},
 });
 
-const Form = ({ children, initialValues, heading, formType }) => {
+const Form = ({ children, initialValues, heading, formType, errors }) => {
   const [form, setForm] = useState(initialValues);
+  const [error, setError] = useState(errors);
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -21,12 +23,38 @@ const Form = ({ children, initialValues, heading, formType }) => {
     setForm(updatedForm);
   };
 
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (form.email === "") {
+      return setError({ ...error, email: "Please provede a valid email" });
+    }
+
+    if (form.password === "") {
+      return setError({
+        ...error,
+        password: "Please provede a strong password",
+      });
+    }
+
+    setError({});
+    console.log("login submit");
+  };
+
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+    console.log("signup submit");
+  };
+
   return (
     <div className="form-container">
-      <form className="form">
+      <form
+        className="form"
+        onSubmit={formType === "login" ? handleLoginSubmit : handleSignUpSubmit}
+      >
         <h1>{heading}</h1>
         <FormContext.Provider
           value={{
+            error,
             form,
             handleFormChange,
           }}

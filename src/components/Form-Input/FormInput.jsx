@@ -6,7 +6,7 @@ function FormInput(props) {
   const { label, type, name } = props;
 
   const formContext = useContext(FormContext);
-  const { form, handleFormChange } = formContext;
+  const { error, form, handleFormChange } = formContext;
 
   return (
     <div className="form-input">
@@ -18,6 +18,12 @@ function FormInput(props) {
         onChange={handleFormChange}
         className="box-input"
       />
+      {error.email && name === "email" && (
+        <p className="error">{error.email}</p>
+      )}
+      {error.password && name === "password" && (
+        <p className="error">{error.password}</p>
+      )}
     </div>
   );
 }

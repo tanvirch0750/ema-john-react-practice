@@ -4,7 +4,12 @@ import Form from "../../Form/Form";
 import "./Login.css";
 
 const Login = () => {
-  const signUpInitialValues = {
+  const LogInInitialValues = {
+    email: "",
+    password: "",
+  };
+
+  const errors = {
     email: "",
     password: "",
   };
@@ -12,7 +17,8 @@ const Login = () => {
   return (
     <div className="login">
       <Form
-        initialValues={signUpInitialValues}
+        errors={errors}
+        initialValues={LogInInitialValues}
         heading="Login"
         formType="login"
       >
