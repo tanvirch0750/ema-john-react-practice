@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Login from "./components/Authentication/Login/Login";
+import Signup from "./components/Authentication/Signup/Signup";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import NotFound from "./components/Not-Found/NotFound";
@@ -66,6 +68,8 @@ function App() {
             />
           }
         />
+        <Route path="login" element={<Login />}></Route>
+        <Route path="signup" element={<Signup />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

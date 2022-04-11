@@ -10,7 +10,7 @@ function FormInput(props) {
 
   return (
     <div className="form-input">
-      <label>{label}</label>
+      <label>{label}: </label>
       <input
         type={type}
         name={name}
