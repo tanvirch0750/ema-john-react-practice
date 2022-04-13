@@ -20,5 +20,7 @@
 
 .box-input:focus {
   outline: 0;
-  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  box-shadow: rgba(255, 224, 179, 1) 0px 0px 0px 3px;
+  border: none;
+  border: 1px solid rgba(255, 224, 179, 1);
 }

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./Authentication/Login/Login";
 import Signup from "./Authentication/Signup/Signup";
@@ -43,36 +43,38 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="shop"
-          element={
-            <ShopContainer
-              products={products}
-              handleAddToCart={handleAddToCart}
-              cart={cart}
-              handleClearCart={handleClearCart}
-            />
-          }
-        />
-        <Route
-          path="orders-review"
-          element={
-            <OrderReviewContainer
-              cart={cart}
-              handleClearCart={handleClearCart}
-              handleDeleteSingleProduct={handleDeleteSingleProduct}
-            />
-          }
-        />
-        <Route path="login" element={<Login />}></Route>
-        <Route path="signup" element={<Signup />}></Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+    <BrowserRouter>
+      <div className="container">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="shop"
+            element={
+              <ShopContainer
+                products={products}
+                handleAddToCart={handleAddToCart}
+                cart={cart}
+                handleClearCart={handleClearCart}
+              />
+            }
+          />
+          <Route
+            path="orders-review"
+            element={
+              <OrderReviewContainer
+                cart={cart}
+                handleClearCart={handleClearCart}
+                handleDeleteSingleProduct={handleDeleteSingleProduct}
+              />
+            }
+          />
+          <Route path="login" element={<Login />}></Route>
+          <Route path="signup" element={<Signup />}></Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

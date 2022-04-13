@@ -1,31 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
+import auth from "../../Firebase/Firebase.init";
 import "./Signup.css";
 
 const Signup = () => {
-  const initialValues = {
+  const [formValue, setFormValue] = useState({
     email: "",
     password: "",
     confirmPassword: "",
-  };
-  const [formValue, setFormValue] = useState(initialValues);
+  });
+
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const navigate = useNavigate();
 
-  const validateEmail = (email) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const handleOnBlur = (event) => {
     const { name, value } = event.target;
     setFormValue({ ...formValue, [name]: value });
   };
 
-  const handleSignUpSubmit = (e) => {
-    e.preventDefault();
+  const validation = () => {
+    const validateEmail = (email) => {
+      const re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    };
 
     if (formValue.email === "" || validateEmail(formValue.email) === false) {
       return setEmailError("Please provide a valid email");
@@ -34,9 +39,7 @@ const Signup = () => {
     }
 
     if (formValue.password === "" || formValue.password.length < 6) {
-      return setPasswordError(
-        "Provide a strong password and password length should be minimum of six characters"
-      );
+      return setPasswordError("Password must be six characters or longer");
     } else {
       setPasswordError("");
     }
@@ -49,9 +52,22 @@ const Signup = () => {
     } else {
       setConfirmPasswordError("");
     }
-
-    console.log("submit signup");
   };
+
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+
+    // Input validation
+    validation();
+
+    createUserWithEmailAndPassword(formValue.email, formValue.confirmPassword);
+  };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/shop");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="signup">
@@ -86,6 +102,13 @@ const Signup = () => {
             <p className="error-message">{confirmPasswordError}</p>
           )}
         </FormInput>
+        {error?.message && (
+          <p className="error-message">
+            {error?.message.includes("email-already-in-use")
+              ? "This user already exists."
+              : ""}
+          </p>
+        )}
       </Form>
     </div>
   );
