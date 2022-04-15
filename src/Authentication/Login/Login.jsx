@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Form from "../../components/Form/Form";
 import FormInput from "../../components/FormInput/FormInput";
 import auth from "../../Firebase/Firebase.init";
@@ -13,6 +13,8 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -29,9 +31,9 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      navigate("/shop");
+      navigate(from, { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, navigate, from]);
 
   return (
     <div className="login">

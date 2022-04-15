@@ -2,10 +2,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./Authentication/Login/Login";
 import Signup from "./Authentication/Signup/Signup";
+import Checkout from "./components/Checkout/Checkout";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import NotFound from "./components/Not-Found/NotFound";
 import OrderReviewContainer from "./components/Order-Review-Container/OrderReviewContainer";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 import ShopContainer from "./components/Shop-Container/ShopContainer";
 import useCart from "./Hooks/useCart";
 import useProducts from "./Hooks/useProducts";
@@ -69,6 +71,14 @@ function App() {
               />
             }
           />
+          <Route
+            path="checkout"
+            element={
+              <RequireAuth>
+                <Checkout />
+              </RequireAuth>
+            }
+          ></Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="signup" element={<Signup />}></Route>
           <Route path="*" element={<NotFound />} />

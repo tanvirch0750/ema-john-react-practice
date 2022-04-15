@@ -14,12 +14,15 @@
   gap: 3.6rem;
 }
 
-.navigation ul li a {
+.navigation ul li a,
+span {
   font-size: 1.7rem;
   color: #fff;
   transition: 300ms;
+  cursor: pointer;
 }
 
-.navigation ul li:hover a {
+.navigation ul li:hover a,
+.navigation ul li:hover span {
   color: #ff9900;
 }
